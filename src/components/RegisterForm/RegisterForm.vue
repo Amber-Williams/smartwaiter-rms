@@ -1,7 +1,7 @@
 <script>
   import api from '@/api';
   export default {
-    name: 'Register',
+    name: 'Register1',
     props: {
       msg: String,
     },
@@ -46,6 +46,7 @@
           this.errorMessage =
             'Please fill in all the fields';
         }
+        console.log('name', this.register.restaurantName);
 
         const created = await this.$store.dispatch('apolloQuery', {
           queryType: 'mutation',

@@ -7,8 +7,8 @@ export default {
   },
   data: () => ({
     login: {
-      email: 'lars.berger@yahoo.com',
-      password: 'test',
+      email: 'rodri@gmail.com',
+      password: 'bananas',
     },
     errorMessage: null,
   }),

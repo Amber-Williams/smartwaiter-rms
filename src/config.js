@@ -1,4 +1,4 @@
 export default {
-  serverURI: 'http://example.com',
-  webSocketURI: 'ws://example.com',
+  serverURI: 'http://localhost:2018',
+  webSocketURI: 'ws://localhost:2018',
 };
