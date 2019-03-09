@@ -7,10 +7,10 @@
     },
     data: () => ({
       register: {
-        firstName: '',
-        lastName: '',
-        email: '',
-        password: '',
+        firstName: 'test',
+        lastName: 'test',
+        email: 'test@test',
+        password: 'test',
         restaurantName: null,
         latitude: null,
         longitude: null,
@@ -28,11 +28,12 @@
         let lat = place.geometry.location.lat();
         let lon = place.geometry.location.lng();
         let city = ac[0]['short_name'];
-        console.log('ffff', place);
-
+        
+        this.register.id = place.id;
         this.register.latitude = lat;
         this.register.longitude = lon;
         this.register.restaurantName = place.name;
+        console.log('ffff', place);
       });
     },
     methods: {
@@ -45,8 +46,9 @@
         ) {
           this.errorMessage =
             'Please fill in all the fields';
+          return;
         }
-        console.log('name', this.register.restaurantName);
+        
 
         const created = await this.$store.dispatch('apolloQuery', {
           queryType: 'mutation',
@@ -55,6 +57,8 @@
             name: this.register.restaurantName,
             latitude: this.register.latitude,
             longitude: this.register.longitude,
+            id: this.register.id,
+            //ownerId: this.register.email //added
           },
         });
         
@@ -64,17 +68,16 @@
             queryName: 'REGISTER_OWNER',
             data: {
               name: this.register.firstName +
-                ' ' +
-                this.register.lastName,
+                ' ' + this.register.lastName,
                 email: this.register.email,
-                password: this.register.password,
+                password: this.register.password, //edit to correct this in owners table
               },
             });
             
             this.$router.push('/orders');
             // await localStorage.setItem('token', user.token);
         }
-
+        console.log('name', this.register.restaurantName);
       },
     },
   };

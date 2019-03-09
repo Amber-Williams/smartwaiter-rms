@@ -39,23 +39,25 @@ const GET_RESTAURANT_DATA = function(id = 1) {
 };
 
 const REGISTER_RESTAURANT = function(restaurant) {
+  console.log("here", restaurant)
   return `
   mutation {
     createRestaurant(
       name: "${restaurant.name}"
       latitude: "${restaurant.latitude}"
       longitude: "${restaurant.longitude}"
-      type: "a"
-      photo: "a"
-      description: "a"
+      type: "${restaurant.id}"
+      photo: "${restaurant.id}"
+      description: "${restaurant.id}"
     ) {
       id
     }
   }
   `;
-};
+}; //removed ownerId
 
 const REGISTER_OWNER = function(owner) {
+  console.log(owner)
   return `
   mutation {
     createOwner(
@@ -67,7 +69,7 @@ const REGISTER_OWNER = function(owner) {
     }
   }
   `;
-};
+}; //removed resturaurantId
 
 const DELETE_PRODUCT = function(id) {
   return `
