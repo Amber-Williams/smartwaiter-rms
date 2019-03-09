@@ -33,7 +33,6 @@
         this.register.latitude = lat;
         this.register.longitude = lon;
         this.register.restaurantName = place.name;
-        console.log('ffff', place);
       });
     },
     methods: {
@@ -42,11 +41,12 @@
           !this.register.firstName ||
           !this.register.lastName ||
           !this.register.password ||
-          !this.register.email
+          !this.register.email ||
+          !this.register.restaurantName // To avoid blank restaurant field
         ) {
           this.errorMessage =
             'Please fill in all the fields';
-          // return;
+          return; // So it doesn't go on with the handling
         }
         
 
@@ -75,10 +75,10 @@
 
             if (localStorage.getItem('token')) { // Preventing to get into orders
               this.$router.push('/orders');      // without a token (basic way)
-            } 
-            // await localStorage.setItem('token', user.token);
+            }
+            
+            // Implement log-in in here
         }
-        console.log('name', this.register.restaurantName);
       },
     },
   };
