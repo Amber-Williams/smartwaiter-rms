@@ -73,11 +73,27 @@
             },
           });
 
-        if (localStorage.getItem('token')) { // Preventing to get into orders
-          this.$router.push('/orders');      // without a token (basic way)
-        }
+          const data = {
+            username: this.register.email,
+            password: this.register.password,
+          };
+          const user = await api.request('POST', '/login-rms', data).catch(() => false);
+          localStorage.setItem('restaurantId', user.restaurant.id);
 
-        // Implement log-in in here
+          if (user.token) {
+            await localStorage.setItem('token', user.token);
+            await this.$store.dispatch('apolloQuery', {
+              // We already have the restaurant data (it's being created)
+              // so this is actually not necessary
+              queryType: 'query',
+              queryName: 'GET_RESTAURANT_DATA',
+              data: user.restaurant.id,
+            });
+          }
+
+          if (localStorage.getItem('token')) {  // Preventing to get into orders
+            this.$router.push('/orders');       // without a token (basic way)
+          }
         }
       },
     },

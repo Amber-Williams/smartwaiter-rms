@@ -8,6 +8,7 @@ export default async function(to, from, next) {
     await store.dispatch('apolloQuery', {
       queryType: 'query',
       queryName: 'GET_RESTAURANT_DATA',
+      data: localStorage.getItem('restaurantId')
     });
     console.log(store.state.restaurantInfo.id);
     await store.dispatch('apolloSubscription', {

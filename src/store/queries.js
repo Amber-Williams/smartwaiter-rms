@@ -39,7 +39,7 @@ const GET_RESTAURANT_DATA = function(id = 1) {
 };
 
 const REGISTER_RESTAURANT = function(restaurant) {
-  console.log("here", restaurant)
+  console.log("Register restaurant", restaurant)
   return `
   mutation {
     createRestaurant(

@@ -25,8 +25,8 @@ export default {
         `,
       });
     }
-    console.log(response.data)
-    return await response.data;
+    console.log("Apollo query", args, response.data)
+    return response.data;
   },
   apolloSubscription: async ({ commit }, args) => {
     const subscription = SUBSCRIPTION[args.queryName](args.data);

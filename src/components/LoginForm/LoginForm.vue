@@ -24,6 +24,7 @@ export default {
       }
 
       const user = await api.request('POST', '/login-rms', data).catch(() => false);
+      localStorage.setItem('restaurantId', user.restaurant.id);
 
       if (!user || !user.token) {
         this.errorMessage = 'Incorrect login credentials';

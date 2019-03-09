@@ -25,6 +25,8 @@ const router = new VueRouter({
       path: '/orders',
       component: Orders,
       beforeEnter: ProtectRoute,
+      // When you land into /orders, it needs to fetch data before
+      // and that's what beforeEnter is used for
     },
     {
       path: '/menu',
