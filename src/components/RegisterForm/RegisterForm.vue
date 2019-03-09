@@ -58,7 +58,6 @@
             latitude: this.register.latitude,
             longitude: this.register.longitude,
             id: this.register.id,
-            //ownerId: this.register.email //added
           },
         });
         
@@ -73,8 +72,10 @@
                 password: this.register.password, //edit to correct this in owners table
               },
             });
-            
-            this.$router.push('/orders');
+
+            if (localStorage.getItem('token')) { // Preventing to get into orders
+              this.$router.push('/orders');      // without a token (basic way)
+            } 
             // await localStorage.setItem('token', user.token);
         }
         console.log('name', this.register.restaurantName);
