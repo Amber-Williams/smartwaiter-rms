@@ -62,6 +62,7 @@ const REGISTER_OWNER = function(owner) {
   mutation {
     createOwner(
       name: "${owner.name}"
+      lastname: "${owner.lastname}"
       password: "${owner.password}"
       email: "${owner.email}"
     ) {

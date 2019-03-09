@@ -66,18 +66,18 @@
             queryType: 'mutation',
             queryName: 'REGISTER_OWNER',
             data: {
-              name: this.register.firstName +
-                ' ' + this.register.lastName,
-                email: this.register.email,
-                password: this.register.password, //edit to correct this in owners table
-              },
-            });
+              name: this.register.firstName,
+              lastname: this.register.lastName,
+              email: this.register.email,
+              password: this.register.password, //edit to correct this in owners table
+            },
+          });
 
-            if (localStorage.getItem('token')) { // Preventing to get into orders
-              this.$router.push('/orders');      // without a token (basic way)
-            }
-            
-            // Implement log-in in here
+        if (localStorage.getItem('token')) { // Preventing to get into orders
+          this.$router.push('/orders');      // without a token (basic way)
+        }
+
+        // Implement log-in in here
         }
       },
     },
