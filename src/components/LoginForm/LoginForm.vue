@@ -34,12 +34,10 @@ export default {
         await this.$store.dispatch('apolloQuery', {
           queryType: 'query',
           queryName: 'GET_RESTAURANT_DATA',
+          data: user.restaurant.id,
         });
         this.$router.push('/orders');
       }
-
-      //delete this line
-      //this.$router.push('/orders'); ///
     },
   },
 };

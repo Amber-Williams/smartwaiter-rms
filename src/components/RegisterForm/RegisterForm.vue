@@ -46,7 +46,7 @@
         ) {
           this.errorMessage =
             'Please fill in all the fields';
-          return;
+          // return;
         }
         
 
