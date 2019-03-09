@@ -7,8 +7,8 @@ export default {
   },
   data: () => ({
     login: {
-      email: 'rodri@gmail.com',
-      password: 'bananas',
+      email: 'test@test.com',
+      password: 'test',
     },
     errorMessage: null,
   }),
@@ -37,6 +37,9 @@ export default {
         });
         this.$router.push('/orders');
       }
+
+      //delete this line
+      //this.$router.push('/orders'); ///
     },
   },
 };

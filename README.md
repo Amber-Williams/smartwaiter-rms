@@ -3,7 +3,6 @@
 <p align="center">
 <img style="max-width:100px;max-height:500px;" src="https://firebasestorage.googleapis.com/v0/b/moving-free.appspot.com/o/car%2Fdumbwaiter.png?alt=media&token=03727d0e-bc6b-4c93-9018-6defa28c3a24" />
 </p>
-
 ----
 
 Smart Waiter customer side is an app which allows you to locate a restaurant, browse the menu, order and pay for a meal all from one single page application, ideal for those short on time who don't want to be delayed by busy restaurant staff, or payment disputes. Just choose, click, eat and go.
@@ -25,8 +24,6 @@ npm install
 3. Config file
 
 Replace the websocketURI and serverURI in the config.js file. The server set up can be found [here](https://github.com/edgarcheverier/dumbwaiter-server). 
-
-
 
 4. Start development server
 ```

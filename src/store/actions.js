@@ -25,7 +25,7 @@ export default {
         `,
       });
     }
-
+    console.log(response.data)
     return await response.data;
   },
   apolloSubscription: async ({ commit }, args) => {
