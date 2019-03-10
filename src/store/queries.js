@@ -1,4 +1,4 @@
-const GET_RESTAURANT_DATA = function(id = 1) {
+const GET_RESTAURANT_DATA = function(id = 2) {
   return `
   {
     restaurant(id: ${id}) {

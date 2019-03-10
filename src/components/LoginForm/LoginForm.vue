@@ -28,12 +28,16 @@ export default {
       if (!user || !user.token) {
         this.errorMessage = 'Incorrect login credentials';
       }
+      console.log('user', user.owner.id) ///////
+
 
       if (user.token) {
         await localStorage.setItem('token', user.token);
         await this.$store.dispatch('apolloQuery', {
           queryType: 'query',
           queryName: 'GET_RESTAURANT_DATA',
+          data: user.owner.id
+          //first find user by email, get their id, then fetch resturant by user id
         });
         this.$router.push('/orders');
       }

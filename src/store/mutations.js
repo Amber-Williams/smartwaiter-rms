@@ -51,6 +51,7 @@ export default {
 
     state.userRefreshed = false;
   },
+  
   ACTIVE_CONNECTION_DATA(state, info) {
     state.groupedOrders = info.connection;
 

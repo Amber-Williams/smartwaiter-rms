@@ -75,7 +75,7 @@
             });
             
             this.$router.push('/orders');
-            // await localStorage.setItem('token', user.token);
+            //await localStorage.setItem('token', user.token);
         }
         console.log('name', this.register.restaurantName);
       },
