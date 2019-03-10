@@ -33,7 +33,6 @@
         this.register.latitude = lat;
         this.register.longitude = lon;
         this.register.restaurantName = place.name;
-        console.log('ffff', place);
       });
     },
     methods: {
@@ -42,11 +41,12 @@
           !this.register.firstName ||
           !this.register.lastName ||
           !this.register.password ||
-          !this.register.email
+          !this.register.email ||
+          !this.register.restaurantName // To avoid blank restaurant field
         ) {
           this.errorMessage =
             'Please fill in all the fields';
-          return;
+          return; // So it doesn't go on with the handling
         }
         
 
@@ -58,7 +58,6 @@
             latitude: this.register.latitude,
             longitude: this.register.longitude,
             id: this.register.id,
-            //ownerId: this.register.email //added
           },
         });
         
@@ -67,17 +66,35 @@
             queryType: 'mutation',
             queryName: 'REGISTER_OWNER',
             data: {
-              name: this.register.firstName +
-                ' ' + this.register.lastName,
-                email: this.register.email,
-                password: this.register.password, //edit to correct this in owners table
-              },
+              name: this.register.firstName,
+              lastname: this.register.lastName,
+              email: this.register.email,
+              password: this.register.password, //edit to correct this in owners table
+            },
+          });
+
+          const data = {
+            username: this.register.email,
+            password: this.register.password,
+          };
+          const user = await api.request('POST', '/login-rms', data).catch(() => false);
+          localStorage.setItem('restaurantId', user.restaurant.id);
+
+          if (user.token) {
+            await localStorage.setItem('token', user.token);
+            await this.$store.dispatch('apolloQuery', {
+              // We already have the restaurant data (it's being created)
+              // so this is actually not necessary
+              queryType: 'query',
+              queryName: 'GET_RESTAURANT_DATA',
+              data: user.restaurant.id,
             });
-            
-            this.$router.push('/orders');
-            //await localStorage.setItem('token', user.token);
+          }
+
+          if (localStorage.getItem('token')) {  // Preventing to get into orders
+            this.$router.push('/orders');       // without a token (basic way)
+          }
         }
-        console.log('name', this.register.restaurantName);
       },
     },
   };

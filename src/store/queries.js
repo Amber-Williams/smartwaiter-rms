@@ -39,7 +39,7 @@ const GET_RESTAURANT_DATA = function(id = 2) {
 };
 
 const REGISTER_RESTAURANT = function(restaurant) {
-  console.log("here", restaurant)
+  console.log("Register restaurant", restaurant)
   return `
   mutation {
     createRestaurant(
@@ -62,6 +62,7 @@ const REGISTER_OWNER = function(owner) {
   mutation {
     createOwner(
       name: "${owner.name}"
+      lastname: "${owner.lastname}"
       password: "${owner.password}"
       email: "${owner.email}"
     ) {

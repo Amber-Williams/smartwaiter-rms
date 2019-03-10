@@ -24,6 +24,7 @@ export default {
       }
 
       const user = await api.request('POST', '/login-rms', data).catch(() => false);
+      localStorage.setItem('restaurantId', user.restaurant.id);
 
       if (!user || !user.token) {
         this.errorMessage = 'Incorrect login credentials';
@@ -36,14 +37,10 @@ export default {
         await this.$store.dispatch('apolloQuery', {
           queryType: 'query',
           queryName: 'GET_RESTAURANT_DATA',
-          data: user.owner.id
-          //first find user by email, get their id, then fetch resturant by user id
+          data: user.restaurant.id,
         });
         this.$router.push('/orders');
       }
-
-      //delete this line
-      //this.$router.push('/orders'); ///
     },
   },
 };
