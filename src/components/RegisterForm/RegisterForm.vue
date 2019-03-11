@@ -1,5 +1,7 @@
 <script>
   import api from '@/api';
+  import parseJwt from './../../assets/helpers/parseJwt'
+
   export default {
     name: 'Register1',
     props: {
@@ -78,7 +80,6 @@
             password: this.register.password,
           };
           const user = await api.request('POST', '/login-rms', data).catch(() => false);
-          localStorage.setItem('restaurantId', user.restaurant.id);
 
           if (user.token) {
             await localStorage.setItem('token', user.token);
@@ -87,7 +88,7 @@
               // so this is actually not necessary
               queryType: 'query',
               queryName: 'GET_RESTAURANT_DATA',
-              data: user.restaurant.id,
+              data: parseJwt(localStorage.getItem('token')).restaurantId,
             });
           }
 

@@ -1,5 +1,7 @@
 <script>
 import api from '@/api';
+import parseJwt from './../../assets/helpers/parseJwt'
+
 export default {
   name: 'Login',
   props: {
@@ -24,7 +26,6 @@ export default {
       }
 
       const user = await api.request('POST', '/login-rms', data).catch(() => false);
-      localStorage.setItem('restaurantId', user.restaurant.id);
 
       if (!user || !user.token) {
         this.errorMessage = 'Incorrect login credentials';
@@ -35,7 +36,7 @@ export default {
         await this.$store.dispatch('apolloQuery', {
           queryType: 'query',
           queryName: 'GET_RESTAURANT_DATA',
-          data: user.restaurant.id,
+          data: parseJwt(localStorage.getItem('token')).restaurantId,          
         });
         this.$router.push('/orders');
       }
